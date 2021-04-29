@@ -12,8 +12,8 @@ class PostController extends Controller
     *   @return view
     */
     public function index(){        
-        $post = Post::all();    //Enlista los posts
-      
+        $posts = Post::all();    //Enlista los posts
+        
         return View ('postt.index', compact('posts'));  
 
     }
@@ -25,7 +25,7 @@ class PostController extends Controller
     public function create(){        
         $post = new Post();
         
-        return View ('postt.index', compact('post'));  
+        return View ('postt.create', compact('post'));  
 
     }
 
@@ -36,10 +36,21 @@ class PostController extends Controller
     public function store(Request $request){        
         $post = new Post($request -> all());
         $fecha = date('Y-m-d');
-        $post -> Fecha = $fecha;
+        $post -> fecha = $fecha;
 
         if($post -> save()){
-            return redirect ('postt'); 
+            return redirect ('/postt'); 
         }
+    }
+
+    /*
+    *   edit function: Edit Post
+    *   @return view
+    */
+    public function edit($post_id){        
+        $post = Post::find($post_id);
+        
+        return View ('postt.edit', compact('post'));  
+
     }
 }

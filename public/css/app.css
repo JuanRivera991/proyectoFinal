@@ -32088,6 +32088,12 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+.floating{
+  position: fixed;
+  right: 8em;
+  z-index: 100;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -187942,4 +187948,3 @@ select {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
-
