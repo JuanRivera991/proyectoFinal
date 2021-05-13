@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable=['contenido','fecha'];
+    protected $fillable=['user_id','Titulo','Contenido','Fecha'];
+
+    /**
+     * Get the autor for the blog post.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

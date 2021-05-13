@@ -6,6 +6,8 @@
 <table class="table table-striped table-white table-hover">
     <thead>
          <tr>
+         <th>Id</th>
+         <th>Titulo</th>
          <th>Contenido</th>
          <th>Fecha</th>
          <th>Acciones</th>
@@ -15,6 +17,8 @@
     <tbody>
         @foreach($posts as $post)
         <tr>
+        <td>{{$post->user->name}}</td>
+        <td>{{$post->Titulo}}</td>
         <td>{{$post->Contenido}}</td>
         <td>{{$post->Fecha}}</td>
         <td><a href="{{url('/postt/edit/' . $post->id)}}" class="btn btn-warning">Editar</a></td>

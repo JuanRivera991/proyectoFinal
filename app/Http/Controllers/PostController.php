@@ -33,10 +33,17 @@ class PostController extends Controller
     *   store function
     *   @return view
     */
-    public function store(Request $request){        
+    public function store(Request $request){   
+        
+        $request->validate([
+            'Titulo' => 'required',
+            'Contenido' => 'required',
+        ]);
+        
         $post = new Post($request -> all());
         $fecha = date('Y-m-d');
         $post -> fecha = $fecha;
+        $post->user_id= \Auth::id();
 
         if($post -> save()){
             return redirect ('/postt'); 
@@ -50,7 +57,39 @@ class PostController extends Controller
     public function edit($post_id){        
         $post = Post::find($post_id);
         
-        return View ('postt.edit', compact('post'));  
-
+        if(\Auth::user()->id==$post->user_id){
+            return View('postt.edit',compact('post'));
+         }else{
+             return redirect('/postt');
+            
+        }
     }
+
+    /*
+    *   Update function: Update Post
+    *   @return view
+    */
+    public function update(Request $request, $post_id){
+
+        $request->validate([
+            'Titulo' => 'required',
+            'Contenido' => 'required',
+        ]);
+
+        $post=  Post::find($post_id); 
+        $fecha = date('Y-m-d');
+        $post->fecha=$fecha;
+        $post->user_id= \Auth::id();
+        
+        if(\Auth::user()->id==$post->user_id){
+            
+        }
+
+        if($post->update($request->all())){
+            return redirect('/postt');
+               }else{
+                   return "algo salio mal";
+           }
+    }
+
 }
