@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -12,8 +15,7 @@ class PostController extends Controller
     *   @return view
     */
     public function index(){        
-        $posts = Post::all();    //Enlista los posts
-        
+        $posts = Post::orderBy('fecha','desc')->paginate(9);;    //Enlista los posts
         return View ('postt.index', compact('posts'));  
 
     }
@@ -22,11 +24,12 @@ class PostController extends Controller
     *   create function: show Create Form
     *   @return view
     */
-    public function create(){        
-        $post = new Post();
+    public function create(){   
+        if(\Auth::user()){
+            $post = new Post();
         
-        return View ('postt.create', compact('post'));  
-
+            return View ('postt.create', compact('post'));  
+        }
     }
 
     /*
@@ -60,9 +63,10 @@ class PostController extends Controller
         if(\Auth::user()->id==$post->user_id){
             return View('postt.edit',compact('post'));
          }else{
-             return redirect('/postt');
-            
+            Session::flash('error', 'Este no es tu post');
+            return redirect('/postt');
         }
+
     }
 
     /*
@@ -91,5 +95,12 @@ class PostController extends Controller
                    return "algo salio mal";
            }
     }
+
+    public function Profile($user_id){
+
+        $userpost = User::find($user_id); 
+            return View('postt.profile',compact('userpost'),); 
+    }
+
 
 }

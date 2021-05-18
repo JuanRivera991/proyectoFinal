@@ -5,6 +5,19 @@
         @include('partials.jsfiles')
     </head>
     <body class="font-sans antialiased">
+        @if (Session::has('error'))
+             <script type="text/javascript">  
+                swal({
+                    icon: 'warning',
+                    title:'Error paso algo inesperado',
+                    text:"{{Session::get('error')}}",
+                    type:'error',
+                    timer:4000
+                }).then((value) => {
+                    }).catch(swal.noop);
+            </script>
+        @endif
+
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

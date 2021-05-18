@@ -32094,6 +32094,10 @@ select {
   z-index: 100;
 }
 
+.card{
+  border-radius: 40px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
