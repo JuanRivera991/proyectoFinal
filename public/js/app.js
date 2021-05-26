@@ -3803,6 +3803,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 window.Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+$(document).ready(function () {
+  $('.toggle-btn').click(function () {
+    $('#sidebar').toggleClass('active');
+  });
+});
 
 /***/ }),
 

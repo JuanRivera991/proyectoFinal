@@ -12,12 +12,38 @@
                     title:'Error paso algo inesperado',
                     text:"{{Session::get('error')}}",
                     type:'error',
-                    timer:4000
                 }).then((value) => {
+                    location.reload();
+                    }).catch(swal.noop);
+            </script>
+        @endif
+        
+        @if (Session::has('postExitoso'))
+             <script type="text/javascript">  
+                swal({
+                    icon: 'success',
+                    title:'Su post ha sido creado',
+                    text:"{{Session::get('postExitoso')}}",
+                    type:'success',
+                }).then((value) => {
+                    location.reload();
                     }).catch(swal.noop);
             </script>
         @endif
 
+        @if (Session::has('editado'))
+             <script type="text/javascript">  
+                swal({
+                    icon: 'success',
+                    title:'El post ha sido editado',
+                    text:"{{Session::get('editado')}}",
+                    type:'success',
+                }).then((value) => {
+                    location.reload();
+                    }).catch(swal.noop);
+            </script>
+        @endif
+        
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

@@ -26,6 +26,13 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
+            <!-- User Tweet -->
+            <div>
+                <x-label for="tweetuser" :value="__('Twitter User')" />
+
+                <x-input id="tweetuser" class="block mt-1 w-full" type="text" name="tweetuser" :value="old('tweetuser')" required autofocus />
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />

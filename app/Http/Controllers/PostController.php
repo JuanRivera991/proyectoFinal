@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Atymic\Twitter\Facade\Twitter;
 
 class PostController extends Controller
 {
@@ -25,7 +27,7 @@ class PostController extends Controller
     *   @return view
     */
     public function create(){   
-        if(\Auth::user()){
+        if(\Auth::check()){
             $post = new Post();
         
             return View ('postt.create', compact('post'));  
@@ -49,6 +51,7 @@ class PostController extends Controller
         $post->user_id= \Auth::id();
 
         if($post -> save()){
+            Session::flash('postExitoso', 'Publicación exitosa');
             return redirect ('/postt'); 
         }
     }
@@ -85,11 +88,9 @@ class PostController extends Controller
         $post->fecha=$fecha;
         $post->user_id= \Auth::id();
         
-        if(\Auth::user()->id==$post->user_id){
-            
-        }
 
         if($post->update($request->all())){
+            Session::flash('editado', 'Publicación editada');
             return redirect('/postt');
                }else{
                    return "algo salio mal";
@@ -97,10 +98,15 @@ class PostController extends Controller
     }
 
     public function Profile($user_id){
-
-        $userpost = User::find($user_id); 
-            return View('postt.profile',compact('userpost'),); 
+        $userpost = User::find($user_id);
+        
+        if($userpost->user_tweet == null){
+            $twitterapi= Twitter::getUserTimeline(['screen_name' => 'Cristiano', 'count' => 20, 'response_format' => 'json']);
+        }else{
+            $twitterapi= Twitter::getUserTimeline(['screen_name' => $userpost->user_tweet, 'count' => 20, 'response_format' => 'json']);
+        }
+	   
+        $twitterapi= json_decode($twitterapi);
+        return View('postt.profile',compact('userpost','twitterapi')); 
     }
-
-
 }
