@@ -8,11 +8,12 @@
         <div class=" col-md-9 my-4 "> 
             <div class="card-index border border-4 shadow fs-3">
                 <div class="card-profile-index text-light py-2">
+                <div class="card-title text-center"><cite title="Source Title "><a class="fs-3" href="{{url('/postt/profile/'. $post->user_id)}}">{{$post->user->name}}</a></cite></div>
                     <div class="d-flex w-100 align-items-center  justify-content-around "style="padding-left:80px;">
                         <cite title="Source Title ">{{$post->Fecha}} </cite>
-                        <cite title="Source Title "><a  href="{{url('/postt/profile/'. $post->user_id)}}">{{$post->user->name}}</a></cite>
-                        <br>
-                        <a href="{{url('/postt/edit/' . $post->id)}}" class="btn btn-dark rounded-circle fs-3"><i class="text-rigth far fa-edit"></i></a>
+                        
+                        <a href="{{url('/postt/edit/' . $post->id)}}" class="btn btn-dark rounded-circle fs-3" title="Editar post"><i class="text-rigth far fa-edit"></i></a>
+                        <a href="{{url('/postt/show/' . $post->id)}}" class="btn btn-primary rounded-circle fs-4"  title="Ver Post"><i class="text-center fas fa-eye"></i></a>
                     </div>
                 </div>
                     <h5 class="card-header text-center">{{$post->Titulo}}</h5>

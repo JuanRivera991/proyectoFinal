@@ -12,6 +12,17 @@
     border-radius: 40px;
 }
 
+.cardbase-show{
+  border-radius: 40px;
+  height:250px;
+}
+
+.card-show{
+  border-top-right-radius: 35px;
+  border-top-left-radius: 35px;
+  background-color: rgb(17, 134, 163);
+}
+
 .card-index{
     border-radius: 40px;
     height: 300px;

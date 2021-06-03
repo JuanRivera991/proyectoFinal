@@ -30,6 +30,7 @@ Route::get('/postt/create', [PostController::class,'create']);
 Route::post('/postt/create', [PostController::class,'store']);
 Route::get('/postt/edit/{post_id}', [PostController::class,'edit']);
 Route::put('/postt/edit/{post_id}', [PostController::class,'update']);
+Route::get('/postt/show/{post_id}', [PostController::class,'show']);
 
 //--Profile--
 Route::get('/postt/profile/{User_id}', [PostController::class, 'profile']);

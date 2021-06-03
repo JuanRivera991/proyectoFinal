@@ -109,4 +109,14 @@ class PostController extends Controller
         $twitterapi= json_decode($twitterapi);
         return View('postt.profile',compact('userpost','twitterapi')); 
     }
+
+    /*
+     *   create function:from show
+ 
+     *   @return view
+     */
+    public function show($post_id){
+        $showpost = Post::findOrFail($post_id);
+        return View('postt.show',compact('showpost'));
+    }
 }
