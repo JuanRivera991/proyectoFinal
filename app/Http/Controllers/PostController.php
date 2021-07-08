@@ -137,7 +137,7 @@ class PostController extends Controller
             $destroyhidentweet= HiddenTweet::findOrFail($hidetweet_id);
             if(isset($destroyhidentweet)){
                 $destroyhidentweet->delete();
-                Session::flash('borrado','Desocultaste tu tweet con exito');
+                Session::flash('borrado','Mostraste tu tweet con exito');
                 return redirect()->back();
             }
         }

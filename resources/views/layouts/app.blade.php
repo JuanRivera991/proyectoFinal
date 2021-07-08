@@ -48,7 +48,7 @@
         <script type="text/javascript">  
             swal({
                 icon: 'success',
-                title:'tweet desoculto',
+                title:'Mostrar Tweet',
                 text:"{{Session::get('borrado')}}",
                 type:'success'
             }).then((value) => {
