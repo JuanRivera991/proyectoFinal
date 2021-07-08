@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\HiddenTweet;
 use Illuminate\Http\JsonResponse;
 use Atymic\Twitter\Facade\Twitter;
 
@@ -98,16 +99,26 @@ class PostController extends Controller
     }
 
     public function Profile($user_id){
-        $userpost = User::find($user_id);
+        $userpost = User::findOrFail($user_id);
         
         if($userpost->user_tweet == null){
             $twitterapi= Twitter::getUserTimeline(['screen_name' => 'Cristiano', 'count' => 20, 'response_format' => 'json']);
         }else{
             $twitterapi= Twitter::getUserTimeline(['screen_name' => $userpost->user_tweet, 'count' => 20, 'response_format' => 'json']);
         }
-	   
+        
         $twitterapi= json_decode($twitterapi);
-        return View('postt.profile',compact('userpost','twitterapi')); 
+        $hidetweet = $userpost -> hidetweets;
+        return View('postt.profile',compact('userpost','twitterapi','user_id','hidetweet')); 
+    }
+
+    /*Hide tweet*/
+    public function hidetweet($tweet_id){
+                HiddenTweet::create([
+                    'tweet_id' => $tweet_id,
+                    'user_id' => \Auth::user()->id
+                ]);
+                return response('ok',200);
     }
 
     /*
@@ -119,4 +130,15 @@ class PostController extends Controller
         $showpost = Post::findOrFail($post_id);
         return View('postt.show',compact('showpost'));
     }
+
+    //Show Tweet
+    public function destroy($hidetweet_id)
+        {
+            $destroyhidentweet= HiddenTweet::findOrFail($hidetweet_id);
+            if(isset($destroyhidentweet)){
+                $destroyhidentweet->delete();
+                Session::flash('borrado','Desocultaste tu tweet con exito');
+                return redirect()->back();
+            }
+        }
 }

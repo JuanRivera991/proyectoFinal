@@ -34,3 +34,9 @@ Route::get('/postt/show/{post_id}', [PostController::class,'show']);
 
 //--Profile--
 Route::get('/postt/profile/{User_id}', [PostController::class, 'profile']);
+
+//--Hide Tweets--
+Route::post('/postt/profile/{tweet_id}',[PostController::class, 'hidetweet']);
+
+//--Show Tweet
+Route::delete('/postt/profile/{hidetweet_id}', [PostController::class, 'destroy']);

@@ -32090,8 +32090,14 @@ select {
 
 .floating{
   position: fixed;
-  bottom: 30px;
+  bottom: 350px;
   right:55px;
+}
+
+.profile{
+  position:fixed;
+  left:20px;
+  bottom: 350px;
 }
 
 .card{
@@ -32256,6 +32262,57 @@ cite a:hover{
   border-top: 4px solid;
   border-bottom: 4px solid;
   transform: skewY(-20deg);
+}
+
+@media(max-width: 764px){
+  #sidebar {
+    position:absolute;
+    top:0px;
+    left:-265px;
+    width:265px;
+    height:auto;
+    transition:all 500ms linear;
+  }
+
+  #sidebar .toggle-btn {
+    position:fixed;
+    left:260px;
+    top:140px;
+    padding-left:2px;
+    margin-bottom:50px;
+  }
+
+  .s a{
+    display: inline-block;
+    font-size: 30px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    color:#00ffff;
+    margin: 0 16px;
+    transition: .4s linear
+  }
+
+  .profile{
+    position:fixed;
+    bottom: 81px;
+    right: 10px;
+  }
+
+  .floating{
+    position: fixed;
+    bottom: 81px;
+    right:10px
+  }
+}
+
+@media(max-width: 300px){
+  .profile{
+    position:fixed;
+    bottom: 81px;
+    right: 10px;
+  }
 }
 
 @media (min-width: 640px) {
