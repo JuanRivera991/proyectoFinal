@@ -1,13 +1,17 @@
-## Programas necesarios
+## Step by step to test the final project
 
--Primero se necesita descargar el xampp y descargar la versión que se adapte a su dispositivo
- Link de descarga XAMPP: https://www.apachefriends.org/es/index.html
+-First you need to download xampp and download the version that suits your device.
+ XAMPP download link: https://www.apachefriends.org/es/index.html
 
--Luego de descargar e instalar el xampp, se abre el programa e iniciamos los servicios de Apache y MySQL. 
--Despues se pulsa el boton de ADMIN del servicio MySQL
+-After downloading and installing xampp, open the program and start the Apache and MySQL services. 
+-Then click on the ADMIN button of the MySQL service.
 
--Dentro de la aplicación de phpMyAdmin, se da click en el apartado de Importar, alli se subira el archivo adjunto dentro de la carpeta  comprimida llamado base_de_datos.sql, luego se procede a dar click en Continuar.
+-Inside the application of phpMyAdmin, click in the Import section, there the attached file will be uploaded inside the compressed folder called database.sql, then proceed to click on Continue.
 
--Despues de haber importado la base de datos, se abre la carpeta en la cual fue instalada el xampp, luego se entra en la carpeta htdocs y dentro de esa carpeta se coloca la carpeta adjunta llamada proyectoFinal
+-After having imported the database, the folder in which the xampp was installed is opened, then it is entered in the folder htdocs and inside that folder the attached folder called proyectoFinal is placed.
 
+-Now you install Visual Studio Code through this link https://code.visualstudio.com/
 
+-Open the ProyectoFinal folder through Visual Studio Code, then in the upper left corner click on the terminal option and select New Terminal.
+
+-In the terminal the command php artisan serve is placed and executed, this will generate a link to a local host, enter the link and everything is ready to test the final project!
