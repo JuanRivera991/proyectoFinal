@@ -19,8 +19,7 @@ class PostController extends Controller
     */
     public function index(){        
         $posts = Post::orderBy('fecha','desc')->paginate(9);;    //Enlista los posts
-        return View ('postt.index', compact('posts'));  
-
+        return View ('postt.index', compact('posts')); 
     }
 
     /*
@@ -97,7 +96,11 @@ class PostController extends Controller
                    return "algo salio mal";
            }
     }
-
+    /**
+     * 
+     * Function to decode the tweet user
+     * 
+     */
     public function Profile($user_id){
         $userpost = User::findOrFail($user_id);
         
